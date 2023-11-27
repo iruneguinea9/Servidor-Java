@@ -1,0 +1,41 @@
+<%@page import="beans.Resultado"%>
+<%@page import="beans.Mensaje"%>
+<%@page import="beans.AlmacenMensajes"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<table>
+	<%
+		if(request.getAttribute("resultado")!=null){
+			Resultado r = (Resultado)request.getAttribute("resultado");
+			String msg =r.isOk()?r.getMotivo():"ERROR "+r.getMotivo();
+			out.print("<h3>+msg+""</h3>")
+		}
+		int i=0;
+		for (Mensaje m: AlmacenMensajes.getLstMsgs())
+		{
+			out.print("<tr>");
+			out.print("<td>"+ m.getEmisor() + "</td>");
+			out.print("<td>"+m.resumenMensaje() + "</td>");
+			out.print("<td>"+m.getaFavor() + "</td>");
+			out.print("<td>"+m.getEnContra() + "</td>");	
+			String enlace1="ServletVotar?ind="+i+"&afavor";
+			String enlace2="ServletVotar?ind="+i+"&encontra";
+			out.print("<td><a href='"+enlace1+"'>A FAVOR</a></td>");
+			out.print("<td><a href='"+enlace2+"'>EN CONTRA</a></td>");
+			out.println("</tr>");
+			i++;
+		}
+	
+	%>
+	</table>
+
+</body>
+</html>

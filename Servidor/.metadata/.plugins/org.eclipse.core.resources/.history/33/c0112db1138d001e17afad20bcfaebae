@@ -1,0 +1,41 @@
+package servlets;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import beans.AlmacenMensajes;
+import beans.Mensaje;
+
+
+public class ServletVotar extends HttpServlet {
+	
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		try {
+			int i=Integer.parseInt(request.getParameter("ind"));
+			Mensaje m=AlmacenMensajes.getLstMsgs().get(i);
+			if (request.getParameter("afavor")!=null)
+				m.votarAFavor();
+			if (request.getParameter("encontra")!=null)
+				m.votarEnContra();
+			
+			
+		}
+		catch (NumberFormatException  | IndexOutOfBoundsException e) {
+			
+		}
+		
+		request.getRequestDispatcher("mensajes.jsp").forward(request, response);
+		
+	
+	}
+
+	
+	
+
+}

@@ -1,0 +1,15 @@
+package beans;
+
+import java.util.ArrayList;
+
+public class AlmacenMensajes {
+	private static ArrayList<Mensaje> lstMsgs = new ArrayList<Mensaje>();
+	
+	static void aniadirMensaje(Mensaje m) {
+		lstMsgs.add(m);
+	}
+	
+	static int cantMsgs() {
+		return lstMsgs;
+	}
+}

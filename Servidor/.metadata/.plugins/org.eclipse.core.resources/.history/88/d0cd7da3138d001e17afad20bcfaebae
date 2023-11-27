@@ -1,0 +1,9 @@
+package beans;
+
+public class Resultado {
+	private boolean ok;
+	private String motivo;
+	public Resultado() {
+		
+	}
+}

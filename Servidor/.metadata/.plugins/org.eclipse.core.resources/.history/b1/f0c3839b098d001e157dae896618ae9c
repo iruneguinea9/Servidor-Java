@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+ 		<form method='post' action='ServLetNuevoMen'>
+ 			<tr>
+	 			<td>Emisor</td>
+	 			<td> <input type='text' name='emisor'/> </td>
+ 			</tr>
+ 			<tr>
+	 			<td>Emisor</td>
+	 			<td> <textarea name='emisor' rows='4' cols='30'></textarea> </td>
+ 			</tr>
+ 			<tr>
+	 			<td colspan='2'><input type='submit' name='nuevo' value='AÑADIR'/></td>
+ 			</tr>
+ 		</form>
+ </table>
+</body>
+</html>

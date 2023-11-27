@@ -1,0 +1,27 @@
+<%@page import="beans.Mensaje"%>
+<%@page import="beans.AlmacenMensajes"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+	
+		//out.print(AlmacenMensajes.cantMsgs() + " mensajes");
+	for (Mensaje m: AlmacenMensajes.getLstMsgs()){
+		out.print("<tr>");
+		
+		out.print("<td>"+m.getEmisor()+"</td>");
+		out.print("<td>"+m.resumenMensaje()+"</td>");
+		out.print("<td>"+m.getaFavor()+"</td>");
+		out.print("<td>"+m.getEnContra()+"</td>");
+		out.print("</tr>");
+	}
+	
+	%>
+</body>
+</html>

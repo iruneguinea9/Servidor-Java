@@ -1,0 +1,8 @@
+package beans;
+
+import java.util.ArrayList;
+
+public class AlmacenMensajes {
+	private static ArrayList<Mensaje> lstMsgs = new ArrayList<Mensaje>();
+	
+}

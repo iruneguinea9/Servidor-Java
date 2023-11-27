@@ -1,0 +1,18 @@
+package beans;
+
+import java.util.Date;
+
+public class Mensaje {
+	private String emisor;
+	private String texto;
+	private Date fecha;
+	private int aFavor;
+	private int enContra;
+	
+	public Mensaje(String emisor, String texto) {
+		super();
+		this.emisor = emisor;
+		this.texto = texto;
+		this.fecha = new Date();
+	}
+}
