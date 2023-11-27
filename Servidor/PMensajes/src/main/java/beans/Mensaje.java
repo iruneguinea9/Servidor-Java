@@ -13,26 +13,30 @@ public class Mensaje {
 		super();
 		this.emisor = emisor;
 		this.texto = texto;
-		this.fecha = new Date();
-		this.aFavor=0;
-		this.enContra=0;
+		fecha=new Date();
+		aFavor=0;
+		enContra=0;
 	}
 	
 	public Mensaje() {
-		
+	
 	}
-	public String resumenMensaje() {
-		if(texto.length()<50) {
-			return texto;
-		}
-		return texto.substring(0,50);
-	}
+	
 	public void votarAFavor() {
 		aFavor++;
 	}
+	
 	public void votarEnContra() {
 		enContra++;
+		
 	}
+	
+	public String resumenMensaje() {
+		if (texto.length()<50)
+			return texto;
+		return texto.substring(0,50);
+	}
+
 	public String getEmisor() {
 		return emisor;
 	}
@@ -73,4 +77,9 @@ public class Mensaje {
 		this.enContra = enContra;
 	}
 	
+	
+	
+	
+	
+
 }
