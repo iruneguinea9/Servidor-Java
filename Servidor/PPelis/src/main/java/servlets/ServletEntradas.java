@@ -54,20 +54,39 @@ public class ServletEntradas extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//Si venimos de un submit "aniadir entradas" de entradas.jsp
+		
 		HttpSession s=request.getSession();
-
-		// si venimos de un submit añadir entradas de entradas.jsp
-		if(request.getParameter("aniadir")!=null) {
-			if(s.getAttribute("misentradas")==null) {
-				HashMap<String, Integer> misentradas=new HashMap<String,Integer>();
-				s.setAttribute("misentradas", misentradas);
-			}
-			HashMap<String,Integer> mapaentradas=(HashMap<String,Integer>)s.getAttribute("mapaentradas");
-			String nombre= request.getParameter("nombre");
-			int entradas= Integer.parseInt(request.getParameter("entradas"));
+		
+		if (request.getParameter("aniadir")!=null)
+		{
 			
-			mapaentradas.put(nombre,mapaentradas.get(nombre)+entradas);
+			if (s.getAttribute("mapaentradas")==null)
+			{
+				HashMap<String,Integer> mapa=new HashMap<String,Integer>();
+				s.setAttribute("mapaentradas", mapa);				
+			}
+			
+			HashMap<String,Integer> mapaentradas=
+					(HashMap<String,Integer>)s.getAttribute("mapaentradas");
+			
+			
+			String nombre=request.getParameter("nombre");
+			int entradas=Integer.parseInt(request.getParameter("entradas"));
+			
+			if (mapaentradas.containsKey(nombre))
+				mapaentradas.put(nombre, mapaentradas.get(nombre)+entradas);
+			else
+				mapaentradas.put(nombre,entradas);
+			
+			
 		}
+		
+		response.sendRedirect("entradas.jsp");
+		
+		
+		
 	}
 
 }

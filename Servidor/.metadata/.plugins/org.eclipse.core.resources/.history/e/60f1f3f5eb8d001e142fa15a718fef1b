@@ -25,7 +25,7 @@
 	
 	
 	for (Peli peli: listapelis){
-		out.print("<form method='post' action='ServletEntradas'>");
+		out.print("<form method='post' action='ServletAltaPelis'>");
 		out.print("<tr>");
 		
 		out.print("<input type='hidden' name='nombre' value='"+peli.getNombre()+"'/>");
