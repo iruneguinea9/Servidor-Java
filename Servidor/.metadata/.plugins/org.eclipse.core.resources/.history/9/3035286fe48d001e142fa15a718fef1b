@@ -1,0 +1,36 @@
+package servlets;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.util.ArrayList;
+
+import beans.Peli;
+
+/**
+ * Servlet implementation class ServletEntradas
+ */
+public class ServletEntradas extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    private ArrayList<Peli> pelis(String nomFich){
+    	 ArrayList<Peli> pelis = new ArrayList<Peli>();
+    	 
+    	 ObjectInput
+    	 return pelis;
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}

@@ -1,0 +1,47 @@
+<%@page import="beans.Peli"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<%
+	
+	
+	
+	ArrayList<Peli> listapelis=(ArrayList<Peli>) 
+									session.getAttribute("listapelis");
+	
+	
+if (listapelis==null){
+	response.sendRedirect("ServletEntradas");
+}
+for(Peli peli:listapelis){
+	out.print("<form>");
+	
+	out.print("<tr>");
+		out.print("<td>"+peli.getNombre()+"</td>");
+		out.print("<td>"+peli.getEntradas()+"</td>");
+		out.print("<select name='entradas'>");
+		for(int cont=1;cont<=peli.getEntradas();cont++){
+			out.println("<option value='"+cont+"'/>"+cont)
+		}
+		
+		out.print("</select>");
+
+	out.print("</tr>");
+
+	out.print("</form>");
+
+}
+	
+	
+	%>
+
+</body>
+</html>
