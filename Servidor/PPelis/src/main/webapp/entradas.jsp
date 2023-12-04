@@ -51,7 +51,11 @@
 		}
 		
 		out.print("</select></td>");
-		out.print("<td><input type='submit' name='aniadir' value='AÑADIR'/></td>");		
+		if (topeEntradas<1)
+			out.print("<td><input type='submit' name='aniadir' value='AÑADIR' disabled/></td>");		
+		else
+			out.print("<td><input type='submit' name='aniadir' value='AÑADIR' /></td>");		
+
 		out.print("<td>"+compradas+ " compradas</td>");	
 		out.print("</tr>");
 		out.print("</form>");		
@@ -60,6 +64,15 @@
 	
 	
 	out.print("</table>");
+	
+	
+	
+	
+	if (session.getAttribute("mapaentradas") != null){		
+		out.println("<p><a href='ServletEntradas?grabar'>COMPRAR</a>");
+		
+		
+	}
 
 
 

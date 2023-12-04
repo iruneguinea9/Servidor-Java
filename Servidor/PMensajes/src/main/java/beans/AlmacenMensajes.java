@@ -19,5 +19,15 @@ public class AlmacenMensajes {
 	public static ArrayList<Mensaje> getLstMsgs() {
 		return lstMsgs;
 	}
+	
+	public static void votarMensaje(int ind, boolean aFavor) {
+		
+		Mensaje m=lstMsgs.get(ind);
+		if (aFavor)
+			m.votarAFavor();
+		else
+			m.votarEnContra();
+		
+	}
 
 }

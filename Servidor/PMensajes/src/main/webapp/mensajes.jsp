@@ -37,8 +37,7 @@
 			String enlace3="ServletVotar?indMG="+i;
 			out.print("<td><a href='"+enlace1+"'>A FAVOR</a></td>");
 			out.print("<td><a href='"+enlace2+"'>EN CONTRA</a></td>");
-			out.print("<td><a href='"+enlace3+"'>ME GUSTA</a></td>");
-			
+			out.print("<td><a href='"+enlace3+"'>ME GUSTA</a></td>");			
 			out.println("</tr>");
 			i++;
 		}
@@ -49,11 +48,10 @@
 	
 	<%
 	
-	if (session.getAttribute("gustos")!=null)	{
-		
+	if (session.getAttribute("gustos")!=null)	{		
 		HashSet<Integer> gustos=(HashSet<Integer>) session.getAttribute("gustos");
 		out.print("<a href='ServletVotar?guardar'>GUARDAR " + gustos.size() + " OPINIONES</a>");
-		
+
 	}
 	%>
 

@@ -9,23 +9,39 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import beans.Peli;
 
 public class ServletEntradas extends HttpServlet {
-
-       
-    
 	
 	
-	private ArrayList<Peli> pelis(String nomFich){	
+	private void creaFichPelis(String nomFich,ArrayList<Peli> pelis) {
+		String ruta=(nomFich);
+		try {
+			ObjectOutputStream oos=new ObjectOutputStream
+									(new FileOutputStream(ruta));
+			
+			for (Peli peli: pelis)
+				oos.writeObject(peli);
+			oos.writeObject(null);
+			oos.close();
+			System.out.print("Fichero creado");
 		
-		ArrayList<Peli> pelis= new ArrayList<Peli>();
-		
+		} catch (Exception e) {
+			System.out.print("error al crear fichero"+ e.getMessage());
+			
+		}
+	}
+	
+	
+	private ArrayList<Peli> pelis(String nomFich){			
+		ArrayList<Peli> pelis= new ArrayList<Peli>();		
 		try {
 			ObjectInputStream ois=new ObjectInputStream(
 					new FileInputStream(nomFich));
@@ -47,9 +63,27 @@ public class ServletEntradas extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		
 		HttpSession s=request.getSession();
+		HashMap<String,Integer> mapa=
+				(HashMap<String,Integer>)s.getAttribute("mapaentradas");
+		
+		if (request.getParameter("grabar")!=null)
+		{
+			ArrayList<Peli>pelis=pelis("pelis.obj");			
+			for (int i=0; i<pelis.size(); i++) {
+				Peli p=pelis.get(i);
+				if (mapa.containsKey(p.getNombre()))
+					p.setEntradas(p.getEntradas() - mapa.get(p.getNombre()) );				
+			}	
+			creaFichPelis("pelis.obj", pelis);
+			s.removeAttribute("listapelis");
+			s.removeAttribute("mapaentradas");
+		}		
+		
 		s.setAttribute("listapelis", pelis("pelis.obj"));
-		response.sendRedirect("entradas.jsp");			
+		response.sendRedirect("entradas.jsp");
+		
 	}
 
 	

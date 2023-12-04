@@ -19,11 +19,25 @@ public class ServletVotar extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		 //Crear sesión o recuperarla
+		HttpSession s=request.getSession();
+		
 		Resultado r=new Resultado();
+		if (request.getParameter("guardar")!=null)
+		{
+			for (Integer i: (HashSet<Integer>)s.getAttribute("gustos")) {				
+				
+				AlmacenMensajes.votarMensaje(i,true);
+				
+			}
+			//s.invalidate();
+			s.removeAttribute("gustos");
+			
+		}	
+		
 		if (request.getParameter("indMG")!=null)
 		{
-			HttpSession s=request.getSession();  //Crear sesión o recuperarla
+			
 			
 			if (s.getAttribute("gustos")==null)
 				s.setAttribute("gustos",new HashSet<Integer>());
