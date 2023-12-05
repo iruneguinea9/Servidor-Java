@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  version="6.0">
+  <servlet>
+    <description></description>
+    <display-name>ServletNuevoMens</display-name>
+    <servlet-name>ServletNuevoMens</servlet-name>
+    <servlet-class>servlets.ServletNuevoMens</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletNuevoMens</servlet-name>
+    <url-pattern>/ServletNuevoMens</url-pattern>
+  </servlet-mapping>
+  <display-name>PMensajes</display-name>
+  <welcome-file-list>
+    <welcome-file>nuevo_mensaje.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ServletVotar</display-name>
+    <servlet-name>ServletVotar</servlet-name>
+    <servlet-class>servlets.ServletVotar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletVotar</servlet-name>
+    <url-pattern>/ServletVotar</url-pattern>
+  </servlet-mapping>
+</web-app>

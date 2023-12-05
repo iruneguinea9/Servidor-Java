@@ -1,0 +1,16 @@
+package beans;
+
+import java.util.ArrayList;
+
+public class AlmacenPalabras {
+
+	private static ArrayList<String> lista=new ArrayList<String>();
+	
+	public static String palabraAzar() {
+		String palabra="";
+		
+		
+		
+		return palabra;
+	}
+}

@@ -7,5 +7,9 @@ C:\Users\dw2\Desktop\Servidor\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsea
 \PMensajes\src\main\java
 C:\Users\dw2\Desktop\Servidor\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3523901677.index
 \PM\src\main\java
+C:\Users\dw2\Desktop\Servidor\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\624913945.index
+\PPalabraSecreta\src\main\java
 C:\Users\dw2\Desktop\Servidor\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3050674190.index
 \PM\src\main\java
+C:\Users\dw2\Desktop\Servidor\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1391352106.index
+\PPalabraSecreta\src\main\java

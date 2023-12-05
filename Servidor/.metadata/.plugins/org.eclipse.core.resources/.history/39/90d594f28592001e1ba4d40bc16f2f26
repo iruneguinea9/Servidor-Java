@@ -1,0 +1,10 @@
+package beans;
+
+public class AlmacenPalabras {
+
+	
+	
+	public static String palabraAzar() {
+		
+	}
+}

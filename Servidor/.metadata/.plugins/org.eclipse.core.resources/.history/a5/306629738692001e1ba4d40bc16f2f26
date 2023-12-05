@@ -1,0 +1,16 @@
+package beans;
+
+import java.util.ArrayList;
+
+public class AlmacenPalabras {
+
+	private static ArrayList<String> listaPalabras=new ArrayList<String>();
+	
+	public static String palabraAzar() {
+		String palabra="";
+		int indice = (int) (Math.random()*l+1);
+		
+		
+		return palabra;
+	}
+}

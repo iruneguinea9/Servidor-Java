@@ -1,0 +1,85 @@
+package servlets;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+
+import beans.AlmacenPalabras;
+
+
+public class ServletPalabra extends HttpServlet {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession s=request.getSession();
+		//le llega por get el indice de la letra a revelar
+		if (request.getParameter("indice")!=null)
+		{
+			if(s.getAttribute("reveladas")==null) {
+				ArrayList<Integer> reveladas= new ArrayList<Integer>();
+				reveladas.add(Integer.parseInt(request.getParameter("indice")));
+				s.setAttribute("reveladas", reveladas);
+			}
+			else {
+				ArrayList<Integer> reveladas=(ArrayList<Integer>) s.getAttribute("reveladas");
+				reveladas.add(Integer.parseInt(request.getParameter("indice")));
+			}
+			int vidas =(int)s.getAttribute("vidas");
+			vidas--;
+			if(vidas>0) {
+				s.setAttribute("vidas",vidas);
+			}
+			else {
+				//juego nuevo
+				s.invalidate();
+				response.sendRedirect("ServletPalabra");
+				return;
+			}
+		}
+		else {
+			String palabra = AlmacenPalabras.palabraAzar();
+			s.setAttribute("palabra",palabra);
+			s.setAttribute("vidas",palabra.length()/2);
+			
+		}
+		response.sendRedirect("palabra.jsp");
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession s=request.getSession();
+		String palabra = (String)s.getAttribute("palabra");
+		if (request.getParameter("submit")!=null){
+			String rpta=request.getParameter("rpta");
+			if(rpta.equals(palabra)) {
+				// ha acertado
+				s.invalidate();
+				response.sendRedirect("ServletPalabra?acertado");
+				return;
+			}
+			else {
+				int vidas =(int)s.getAttribute("vidas");
+				vidas--;
+				
+				if(vidas>0) {
+					s.setAttribute("vidas",vidas);
+					response.sendRedirect("palabra.jsp");
+				}
+				else {
+					//juego nuevo
+					s.invalidate();
+					response.sendRedirect("ServletPalabra");
+					return;
+				}
+			}
+		}
+
+		
+	}
+
+}
