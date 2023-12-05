@@ -21,7 +21,10 @@
 <body>
 <div class="container">
 		<% 
-			HttpSession s=request.getSession();		
+			HttpSession s=request.getSession();
+                        if(s.getAttribute("cualEra")!=null){
+                        out.print("<p>Has fallado! la palabra era: "+s.getAttribute("cualEra")+"</p>");
+                    }
 			ArrayList<Integer> reveladas =(ArrayList<Integer>) s.getAttribute("reveladas");
 			out.print("<table>");
 			out.print("<tr>");

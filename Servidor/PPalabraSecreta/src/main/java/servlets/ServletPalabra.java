@@ -63,6 +63,7 @@ public class ServletPalabra extends HttpServlet {
 				return;
 			}
 			else {
+                            if (s.getAttribute("vidas")!=null){
 				int vidas =(int)s.getAttribute("vidas");
 				vidas--;
 				
@@ -70,12 +71,12 @@ public class ServletPalabra extends HttpServlet {
 					s.setAttribute("vidas",vidas);
 					response.sendRedirect("palabra.jsp");
 				}
-				else {
-					//juego nuevo
-					s.invalidate();
-					response.sendRedirect("ServletPalabra");
-					return;
-				}
+                            }
+                          
+                             s.invalidate();
+                             request.setAttribute("cualEra", palabra);
+                             request.getRequestDispatcher("ServletPalabra").forward(request, response);
+                             return;
 			}
 		}
 
