@@ -4,6 +4,7 @@
     Author     : dw2
 --%>
 
+<%@page import="utils.Util"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -36,6 +37,21 @@
                     <td>
                         <input type="submit" name="borrarlibro" value="BORRAR LIBRO" />
                     </td>
+                    <td>
+                        <label>
+                            <c:set var="fecha" scope="request" value="${mapaFechas.get(par.key.id)}"  />
+                         
+                           <%=
+                               Util.strFecha((java.util.Date)request.getAttribute("fecha"))
+                           %>                           
+                           
+                        </label>
+                    </td>
+                    <td>                        
+                        ${ Util.strFecha(mapaFechas.get(par.key.id))}
+                    </td>
+                    
+                    
                 </tr> 
                 </form>
             </c:forEach>    

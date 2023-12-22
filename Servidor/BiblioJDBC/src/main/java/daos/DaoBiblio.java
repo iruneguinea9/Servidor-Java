@@ -31,7 +31,7 @@ public class DaoBiblio {
         
         HashMap <Integer, java.util.Date> mapa=new HashMap <Integer, java.util.Date>();
         
-        String sqlAutores="select distinct idautor from from libros";
+        String sqlAutores="select distinct idautor from libros";
         
          try (   Connection cn=ConnPool.dameConexion();
                 PreparedStatement ps=cn.prepareStatement(sqlAutores);
@@ -58,8 +58,9 @@ public class DaoBiblio {
         
          java.util.Date f=null;
          String sqlFecha="select max(fecha) as ultimafecha from prestamos, libros "
-                 + " where libros.idautor=" + idautor + " and prestamos.idlibro=libros.id"; 
+                 + " where libros.idautor=" + idautor + " and prestamos.idlibro=libros.isbn"; 
         
+         System.out.print(sqlFecha);
          try (   Connection cn=ConnPool.dameConexion();
                 PreparedStatement ps=cn.prepareStatement(sqlFecha);
                 ResultSet rs=ps.executeQuery();       
@@ -67,7 +68,12 @@ public class DaoBiblio {
         
         {
             if (rs.next()){
-                f=Util.fechaUtil(rs.getDate("ultimafecha"));
+                System.out.print("Recuperado " + rs.getDate("ultimafecha"));
+                if (rs.getDate("ultimafecha")!=null){
+                    f=Util.fechaUtil(rs.getDate("ultimafecha"));
+                       
+                }                    
+                    
             }
         }
         catch(SQLException e){

@@ -42,6 +42,7 @@ public class ServletAutores extends HttpServlet {
                 
         HttpSession s = request.getSession();
         s.setAttribute("mapaAutores", DaoBiblio.mapaAutores());
+        s.setAttribute("mapaFechas", DaoBiblio.mapaAutorFechaPrestamo());
        
         response.sendRedirect("autores.jsp");
     } 
@@ -53,7 +54,7 @@ public class ServletAutores extends HttpServlet {
         
         HttpSession s = request.getSession();
         
-        /*
+       
         if (request.getParameter("borrarlibro")!=null){
             
             int idautor=Integer.parseInt(request.getParameter("autor"));
@@ -80,7 +81,7 @@ public class ServletAutores extends HttpServlet {
              //MODO 2: Volver a consultar
             doGet(request, response);
         }
-       */
+      
     }
 
    
