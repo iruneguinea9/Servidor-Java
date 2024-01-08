@@ -8,6 +8,14 @@
         <servlet-name>ServletAutores</servlet-name>
         <url-pattern>/ServletAutores</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletPrestamos</servlet-name>
+        <servlet-class>servlets.ServletPrestamos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletPrestamos</servlet-name>
+        <url-pattern>/ServletPrestamos</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

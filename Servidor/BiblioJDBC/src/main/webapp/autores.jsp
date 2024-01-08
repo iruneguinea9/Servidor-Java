@@ -39,19 +39,13 @@
                     </td>
                     <td>
                         <label>
-                            <c:set var="fecha" scope="request" value="${mapaFechas.get(par.key.id)}"  />
-                         
+                            <c:set var="fecha" scope="request" value="${mapaFechas.get(par.key.id)}"  />                         
                            <%=
                                Util.strFecha((java.util.Date)request.getAttribute("fecha"))
                            %>                           
                            
                         </label>
-                    </td>
-                    <td>                        
-                        ${ Util.strFecha(mapaFechas.get(par.key.id))}
-                    </td>
-                    
-                    
+                    </td>                 
                 </tr> 
                 </form>
             </c:forEach>    

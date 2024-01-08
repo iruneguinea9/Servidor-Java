@@ -169,5 +169,46 @@ public class DaoBiblio {
             System.err.print("Error en DAO borrarLibro " + e.getMessage());
         }
     }
-    
+     public static ArrayList<Libro> obtenerLibros() {
+        ArrayList<Libro> libros=new ArrayList<Libro>();        
+        
+        String sqlLibros="select isbn, titulo, paginas, genero, idautor from libros";
+        
+         try (   Connection cn=ConnPool.dameConexion();
+                PreparedStatement ps=cn.prepareStatement(sqlLibros);               
+                ResultSet rs=ps.executeQuery();       
+            )
+        
+        {
+            while (rs.next()){
+                Libro l=new Libro();
+                l.setIsbn(rs.getString("isbn"));
+                l.setTitulo(rs.getString("titulo"));
+                l.setPaginas(rs.getInt("paginas"));
+                l.setGenero(rs.getString("genero"));
+                l.setIdautor(rs.getInt("idAutor"));
+                libros.add(l);
+            }
+            
+        } 
+        catch (SQLException ex) {        
+            System.err.print("Error SQL en obtenerLibros" + ex.getMessage());        
+        }
+        
+        
+        return libros;
+   }
+     
+     public static void prestarLibro(String isbn) {
+   String sqlPrestamo = "INSERT INTO prestamos (idlibro, fecha) VALUES ('" + isbn + "', CURRENT_DATE)";
+
+   try (Connection cn = ConnPool.dameConexion();
+        PreparedStatement ps = cn.prepareStatement(sqlPrestamo)) {
+
+       ps.executeUpdate();
+   } catch (SQLException e) {
+       System.err.print("Error en DAO prestarLibro " + e.getMessage());
+   }
+}
+
 }
