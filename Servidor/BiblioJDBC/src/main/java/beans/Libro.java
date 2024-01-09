@@ -18,6 +18,7 @@ public class Libro implements Serializable {
     private int paginas;
     private String genero;
     private int idautor;
+    private int numPrestamos;
 
     public Libro() {
     }
@@ -26,12 +27,13 @@ public class Libro implements Serializable {
         this.isbn=isbn;
     }
 
-    public Libro(String isbn, String titulo, int paginas, String genero, int idautor) {
+    public Libro(String isbn, String titulo, int paginas, String genero, int idautor,int numPrestamos) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.paginas = paginas;
         this.genero = genero;
         this.idautor = idautor;
+        this.numPrestamos=numPrestamos;
     }
 
     public String getIsbn() {
@@ -72,6 +74,13 @@ public class Libro implements Serializable {
 
     public void setIdautor(int idautor) {
         this.idautor = idautor;
+    }
+    public int getNumPrestamos() {
+        return numPrestamos;
+    }
+
+    public void setNumPrestamos(int numPrestamos) {
+        this.numPrestamos = numPrestamos;
     }
 
     @Override

@@ -3,6 +3,7 @@
 package servlets;
 
 import beans.Libro;
+import beans.Prestamo;
 import daos.DaoBiblio;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
@@ -40,6 +41,13 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
    HttpSession s = request.getSession();
    ArrayList<Libro> libros = DaoBiblio.obtenerLibros();
    s.setAttribute("libros", libros);
+   
+    if (request.getParameter("isbn")!=null){
+        // ha seleccionado un libro pa ver sus prestamos
+        ArrayList<Prestamo> prestamos=DaoBiblio.obtenerPrestamos(request.getParameter("isbn"));
+        s.setAttribute("prestamos", prestamos);
+
+    }
    RequestDispatcher dispatcher = request.getRequestDispatcher("prestamos.jsp");
    dispatcher.forward(request, response);
 }

@@ -19,7 +19,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
+         
         <h1>AUTORES</h1>
         <table>
             <c:forEach items="${mapaAutores}" var="par">

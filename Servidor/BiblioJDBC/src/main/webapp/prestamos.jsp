@@ -25,6 +25,22 @@
                       <td>${libro.titulo}</td>
                       <td>${libro.genero}</td>
                       <td>${libro.paginas} páginas</td>
+                      <c:if test="${libro.numPrestamos > 0}">
+                         <td><a href="ServletPrestamos?isbn=${libro.isbn}">Ver ${libro.numPrestamos} prestamos</a></td>
+                      </c:if>
+                        <c:if test="${libro.numPrestamos == 0}">
+                         <td> Sin préstamos</td>
+                      </c:if>
+                  </tr>
+                  <tr><td colspan="5"><ul>                     
+                      
+                       <c:if test="${not empty param.isbn && param.isbn eq libro.isbn}">
+                        <c:forEach var="prestamo" items="${sessionScope.prestamos}">
+                            <li>
+                                  Préstamo ${prestamo.id} &ensp;${prestamo.fecha}
+                            </li>  
+                        </c:forEach>
+                     </c:if></ul></td>
                   </tr>
                </c:forEach>
            </table>
