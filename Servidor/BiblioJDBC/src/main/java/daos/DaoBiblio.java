@@ -234,7 +234,7 @@ public class DaoBiblio {
         public static ArrayList<Prestamo> obtenerPrestamos(String isbn) {
         ArrayList<Prestamo> prestamos=new ArrayList<Prestamo>();        
         
-        String sql="SELECT libros.titulo as titulo, prestamos.id as id, libros.isbn as isbn, prestamos.fecha as fecha FROM libros INNER JOIN prestamos ON libros.isbn = prestamos.idlibro WHERE libros.isbn = '"+isbn+"';";
+        String sql="SELECT libros.titulo as titulo, prestamos.id as id,prestamos.fecha_devolucion as dev, libros.isbn as isbn, prestamos.fecha as fecha FROM libros INNER JOIN prestamos ON libros.isbn = prestamos.idlibro WHERE libros.isbn = '"+isbn+"';";
         
          try (   Connection cn=ConnPool.dameConexion();
                 PreparedStatement ps=cn.prepareStatement(sql);               
@@ -248,6 +248,7 @@ public class DaoBiblio {
                 p.setIsbn(rs.getString("isbn"));
                 p.setTitulo(rs.getString("titulo"));
                 p.setFecha(rs.getDate("fecha"));
+                p.setFechaDevolucion(rs.getDate("dev"));
                 prestamos.add(p);
             }
             
@@ -259,4 +260,35 @@ public class DaoBiblio {
         
         return prestamos;
    }
+    public static ArrayList<Prestamo> obtenerLibrosSinDevolver() {
+        ArrayList<Prestamo> prestamos=new ArrayList<Prestamo>();        
+        
+        String sql="SELECT libros.titulo as titulo, prestamos.id as id,prestamos.fecha_devolucion as dev, libros.isbn as isbn, prestamos.fecha as fecha FROM libros INNER JOIN prestamos ON libros.isbn = prestamos.idlibro WHERE prestamos.fecha_devolucion is null ORDER BY fecha;";
+        
+         try (   Connection cn=ConnPool.dameConexion();
+                PreparedStatement ps=cn.prepareStatement(sql);               
+                ResultSet rs=ps.executeQuery();       
+            )
+        
+        {
+            while (rs.next()){
+                Prestamo p=new Prestamo();
+                p.setId(rs.getInt("id"));
+                p.setIsbn(rs.getString("isbn"));
+                p.setTitulo(rs.getString("titulo"));
+                p.setFecha(rs.getDate("fecha"));
+                p.setFechaDevolucion(rs.getDate("dev"));
+                prestamos.add(p);
+            }
+            
+        } 
+        catch (SQLException ex) {        
+            System.err.print("Error SQL en obtenerLibros" + ex.getMessage());        
+        }
+        
+        
+        return prestamos;
+   }
+              
+        
 }

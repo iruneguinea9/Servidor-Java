@@ -15,11 +15,13 @@ public class Prestamo {
     private Date fecha;
     private String isbn;
     private String titulo;
-    public Prestamo(int id, Date fecha,String isbn,String titulo){
+    private Date fecha_devolucion;
+    public Prestamo(int id, Date fecha,String isbn,String titulo,Date fechaDev){
         this.id=id;
         this.fecha=fecha;
         this.isbn=isbn;
         this.titulo=titulo;
+        this.fecha_devolucion=fechaDev;
     }
     public Prestamo(){
         
@@ -35,6 +37,12 @@ public class Prestamo {
     }
     public void setFecha(Date fecha){
         this.fecha=fecha;
+    }
+     public Date getFechaDevolucion(){
+        return this.fecha_devolucion;
+    }
+    public void setFechaDevolucion(Date fecha_devolucion){
+        this.fecha_devolucion=fecha_devolucion;
     }
     public String getIsbn(){
         return this.isbn;

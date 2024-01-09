@@ -4,6 +4,10 @@
         <servlet-name>ServletAutores</servlet-name>
         <servlet-class>servlets.ServletAutores</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletDevolver</servlet-name>
+        <servlet-class>servlets.ServletDevolver</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletAutores</servlet-name>
         <url-pattern>/ServletAutores</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ServletPrestamos</servlet-name>
         <url-pattern>/ServletPrestamos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletDevolver</servlet-name>
+        <url-pattern>/ServletDevolver</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

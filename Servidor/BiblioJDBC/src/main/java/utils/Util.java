@@ -6,6 +6,8 @@ package utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,4 +42,7 @@ public class Util {
         }
         
     }
+   public long diasEntreFechas(Date fecha1, Date fecha2) {
+    return ChronoUnit.DAYS.between(fecha1.toInstant(), fecha2.toInstant());
+}
 }

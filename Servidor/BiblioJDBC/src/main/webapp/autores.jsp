@@ -27,6 +27,15 @@
                 <input type="hidden" name="autor" value="${par.key.id}"
                 <tr>
                     <td><c:out value="${par.key.nombre}"/></td>
+                    <td>
+                        <label> Último préstamo:
+                            <c:set var="fecha" scope="request" value="${mapaFechas.get(par.key.id)}"  />                         
+                           <%=
+                               Util.strFecha((java.util.Date)request.getAttribute("fecha"))
+                           %>                           
+                           
+                        </label>
+                    </td>  
                     <td>                        
                         <select name="libro">
                             <c:forEach items="${par.value}" var="libro">
@@ -37,15 +46,7 @@
                     <td>
                         <input type="submit" name="borrarlibro" value="BORRAR LIBRO" />
                     </td>
-                    <td>
-                        <label>
-                            <c:set var="fecha" scope="request" value="${mapaFechas.get(par.key.id)}"  />                         
-                           <%=
-                               Util.strFecha((java.util.Date)request.getAttribute("fecha"))
-                           %>                           
-                           
-                        </label>
-                    </td>                 
+                                   
                 </tr> 
                 </form>
             </c:forEach>    
