@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 
 public class ServletDevolver extends HttpServlet {
@@ -39,13 +38,20 @@ public class ServletDevolver extends HttpServlet {
     throws ServletException, IOException {
         HttpSession s = request.getSession();
         //recoger libros sin devolver
-         ArrayList<Prestamo> prestamos=DaoBiblio.obtenerLibrosSinDevolver(); 
+        ArrayList<Prestamo> prestamos=DaoBiblio.obtenerLibrosSinDevolver(); 
         s.setAttribute("sinDevolver", prestamos);
-         RequestDispatcher dispatcher = request.getRequestDispatcher("devoluciones.jsp");
-         dispatcher.forward(request, response);
+        if(s.getAttribute("marcadosDevolver")==null){
+            s.setAttribute("marcadosDevolver", new ArrayList<Prestamo>());
+        }
+        if(request.getAttribute("accion")!=null){
+            ArrayList<Prestamo> marcadosDevolver =(ArrayList<Prestamo>)s.getAttribute("marcadosDevolver");
+            marcadosDevolver.add(DaoBiblio.prestamoPorId(Integer.parseInt((String) request.getAttribute("id"))));
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("devoluciones.jsp");
+        dispatcher.forward(request, response);
     } 
 
-  
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {

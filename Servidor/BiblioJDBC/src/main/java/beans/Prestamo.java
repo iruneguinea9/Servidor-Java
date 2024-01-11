@@ -56,4 +56,8 @@ public class Prestamo {
     public void setTitulo(String titulo){
         this.titulo=titulo;
     }
+    
+    public long getDiasPrestado(){
+        return utils.Util.diasEntreFechas(this.getFecha());
+    }
 }

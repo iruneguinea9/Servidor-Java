@@ -118,7 +118,27 @@ public class DaoBiblio {
     }
     
     
-    
+    public static Prestamo prestamoPorId(int id){
+         Prestamo p = new Prestamo();
+        String sql = "select * from prestamos where id="+id;
+          try (   Connection cn=ConnPool.dameConexion();
+                PreparedStatement ps=cn.prepareStatement(sql);               
+                ResultSet rs=ps.executeQuery();       
+            )
+          {
+        while (rs.next()){
+              
+               p.setId(id);
+               p.setIsbn(rs.getString("idlibro"));
+               p.setFecha(rs.getDate("fecha"));
+                          }
+        }
+        catch (SQLException e){
+            System.err.print("Error en DAO numPrestamoLibro " + e.getMessage());
+        }
+       return p;
+      
+    }
     
     public static ArrayList<Libro> librosDeAutor(int idAutor){
         ArrayList<Libro> libros=new ArrayList<Libro>();        

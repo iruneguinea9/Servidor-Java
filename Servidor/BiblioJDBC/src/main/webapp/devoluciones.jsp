@@ -13,9 +13,15 @@
     </head>
     <body>
         <h1>Libros sin devolver</h1>
-        <ol>
+         <table>
         <c:forEach var="sinDevolver" items="${sessionScope.sinDevolver}">
-            <li>${sinDevolver.titulo} dias prestado</li>
-        </c:forEach></ol>
+   <tr>
+       <td>${sinDevolver.titulo}, ${sinDevolver.getDiasPrestado()} dias prestado</td>
+       <td>
+           <a href="ServletDevolver?accion=marcar&id=${sinDevolver.id}">MARCAR DEVOLUCIÓN</a>
+       </td>
+   </tr>
+</c:forEach>
+
     </body>
 </html>

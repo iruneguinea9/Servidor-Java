@@ -42,7 +42,9 @@ public class Util {
         }
         
     }
-   public long diasEntreFechas(Date fecha1, Date fecha2) {
-    return ChronoUnit.DAYS.between(fecha1.toInstant(), fecha2.toInstant());
+   public static long diasEntreFechas(Date fecha1) {
+    long diferencia =new Date().getTime() - fecha1.getTime() ;  
+    long dias = (diferencia / (1000*60*60*24)) % 365;   
+    return dias;
 }
 }
