@@ -20,8 +20,11 @@
 			<td>${viaje.lugar}</td>
 			<td>${viaje.dias}</td>
 			<td>${viaje.kms}</td>
+			<td>${viaje.paradas.size()}</td>
 			<td><a href="/borrarViaje?lugar=${viaje.lugar}">BORRAR VIAJE</a></td>
 			<td><a href="/editarViaje?lugar=${viaje.lugar}">EDITAR VIAJE</a></td>
+			<td><a href="/gestionarViaje/${viaje.lugar}">GESTIONAR VIAJE</a></td>
+			
 		</tr>
 	</c:forEach>
 	<tr>

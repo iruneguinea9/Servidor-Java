@@ -17,7 +17,7 @@
 	</tr>
 	<tr>
 		<form method="post" action="/editarViaje">
-			<td><input type="text" name="lugar" value="${viajeedit.lugar }"></td>
+			<td><input type="text" name="lugar" value="${viajeedit.lugar }" readonly="readonly"></td>
 			<td><input type="number" name="dias" value="${viajeedit.dias }"></td>
 			<td><input type="number" name="kms" value="${viajeedit.kms }"></td>
 			<td><input type="submit" name="editviaje" value="CAMBIAR"></td>

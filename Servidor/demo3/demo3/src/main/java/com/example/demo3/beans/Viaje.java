@@ -1,14 +1,18 @@
 package com.example.demo3.beans;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Viaje {
 	private String lugar;
 	private int dias;
 	private int kms;
+	private ArrayList<String> paradas=new ArrayList<String>();
 	
 	public Viaje() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub	
+		
+		
 	}
 	
 	public Viaje(String lugar, int dias, int kms) {
@@ -59,8 +63,18 @@ public class Viaje {
 		return Objects.equals(lugar, other.lugar);
 	}
 	
+	public ArrayList<String> getParadas() {
+		return paradas;
+	}
 	
+	public void setParadas(ArrayList<String> paradas) {
+		this.paradas = paradas;
+	}
 	
+	public void aniadirParada(String parada) {
+		if (!paradas.contains(parada))
+			paradas.add(parada);
+	}
 	
 
 }

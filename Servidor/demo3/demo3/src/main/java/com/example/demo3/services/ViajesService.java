@@ -6,17 +6,21 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 
 import com.example.demo3.beans.Viaje;
+import com.example.demo3.beans.Viajero;
 
 @Service
 public class ViajesService {
 	
 	private static ArrayList<Viaje> lstViajes=new ArrayList<Viaje>();
-	
-	
 	static {
 		lstViajes.add(new Viaje("Paris",6,1100));
 		lstViajes.add(new Viaje("Praga",3,6500));
 	}
+	
+	private static ArrayList<Viajero> lstViajeros=new ArrayList<Viajero>();
+	
+	
+	
 	
 	
 	public static ArrayList<Viaje> getLstViajes() {
@@ -38,8 +42,6 @@ public class ViajesService {
 		lstViajes.remove(v);		
 	}
 	
-	
-	
 	public Viaje viajeA(String lugar) {
 		Viaje v=new Viaje();
 		v.setLugar(lugar);
@@ -47,4 +49,22 @@ public class ViajesService {
 		return lstViajes.get(iViaje);
 		
 	}
+	
+	public void editarViaje(Viaje viajeCambiado) {
+		Viaje v = viajeA(viajeCambiado.getLugar());
+		v.setDias(viajeCambiado.getDias());
+		v.setKms(viajeCambiado.getKms());
+	}	
+	
+	public void aniadirViajero(Viajero viajero) {
+		lstViajeros.add(viajero);
+	}
+	
+	public ArrayList<Viajero> todosViajeros(){
+		return lstViajeros;
+	}
+	
+	
+	
+	
 }
