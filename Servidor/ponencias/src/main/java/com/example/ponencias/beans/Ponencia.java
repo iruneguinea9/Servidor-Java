@@ -1,6 +1,7 @@
 package com.example.ponencias.beans;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Ponencia {
 	private String titulo; //el identificador
@@ -37,6 +38,18 @@ public class Ponencia {
 
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ponencia other = (Ponencia) obj;
+		return Objects.equals(titulo, other.titulo);
 	}
 	
 }

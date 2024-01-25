@@ -5,16 +5,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Organizar ponencias</title>
 </head>
 <body>
 	<h1>Organizando ponencia con aforo</h1>
 <h2> ${mapa[organizarPonencia]} asistentes</h2>
-	<form method="post" action="aniadirAsistentes">
+	<form method="post" action="/aniadeAsistentes">
 	<label>AÑADIR</label>
+	<input type="hidden" name="tituloPonencia" value="${organizarPonencia.titulo}"/>
 	<input type="number" name="asistentes" /> asistentes  
 	<input type="submit" name="aniadeAsistentes" value="AÑADIR" />
-</form>
 	
+</form>
+	${errorAforo}
 </body>
 </html>

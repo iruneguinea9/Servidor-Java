@@ -33,22 +33,6 @@ public class Controlador {
 	    return "listaponencias";
 	}
 
-	
-	/*@PostMapping("/nuevaPonencia")
-	public String aniadirPonencia(@RequestParam String titulo,
-						@RequestParam int aforo,@RequestParam LocalDate fecha,
-						ModelMap modelo) {
-		
-		Ponencia p = new Ponencia(titulo,aforo,fecha);
-		if (!servicio.aniadirPonencia(p)) {
-			modelo.addAttribute("erroraniadir", "Ponencia " + titulo + " ya existe");
-			modelo.addAttribute("mapaPonencias",servicio.getMapa());
-			return "listaponencias";
-		} else {
-			return "redirect:/ponencias";
-		}
-	}
-	*/
 	@PostMapping("/nuevaPonencia")
 	public String aniadirPonencia(@Valid @ModelAttribute ("ponencia") Ponencia ponencia,
 								BindingResult result,
@@ -65,7 +49,7 @@ public class Controlador {
 	}
 	
 	@GetMapping("/organizarPonencia/{titulo}")
-	public String inicioGestionViaje(@PathVariable String titulo, ModelMap modelo ) {
+	public String organizarPonencia(@PathVariable String titulo, ModelMap modelo ) {
 		
 		Ponencia p = servicio.buscarPonencia(titulo);
 		modelo.addAttribute("organizarPonencia",p);  
@@ -75,13 +59,16 @@ public class Controlador {
 	}
 	
 	@PostMapping("/aniadeAsistentes")
-	public String aniadeAsistentes(@RequestParam int asistentes,
-										ModelMap modelo) {
-	
-		Ponencia p=(Ponencia) modelo.getAttribute("organizarPonencia");
-		servicio.aniadirAsistentes(p,asistentes);
-	
-		return "redirect:/ponencias";
+	public String aniadeAsistentes(@RequestParam int asistentes,String tituloPonencia, ModelMap modelo) {
+	    Ponencia p= servicio.buscarPonencia(tituloPonencia);
+	    if(!servicio.aniadirAsistentes(p,asistentes)) {
+	    	// se supera el aforo
+	    	modelo.addAttribute("errorAforo","No se puedo añadir, superado el aforo permitido");
+	    }
+	    modelo.addAttribute("organizarPonencia", p);
+	    //return "listaponencias";
+	    return "redirect:/organizarPonencia/"+p.getTitulo();
 	}
+
 	
 }

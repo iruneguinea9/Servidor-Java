@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Lista Ponencias</title>
 </head>
 <body>
 	<table>
@@ -36,5 +36,7 @@
 	</tr>
 	
 	</table>
+	${errorAforo}
+	
 </body>
 </html>

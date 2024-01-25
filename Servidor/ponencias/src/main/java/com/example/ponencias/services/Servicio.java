@@ -48,11 +48,21 @@ public class Servicio {
 	    }
 	    return null;
 	}
-	public void aniadirAsistentes(Ponencia p, int cuantos) {
+	public boolean aniadirAsistentes(Ponencia p, int cuantos) {
+		System.out.print("llega");
 	    if (mapa.containsKey(p)) {
-	        int currentValue = mapa.get(p);
-	        mapa.put(p, currentValue + cuantos);
+	    	System.out.print("llega2");
+	        int habia = mapa.get(p);
+	        int total = habia+ cuantos;
+	        System.out.print("De antes-> "+habia);
+	        System.out.print(" Despues-> "+total);
+	        if(total<=p.getAforo()) {
+	        	mapa.put(p, habia + cuantos);
+	        	 return true;
+	        }	        
+	       
 	    }
+	    return false;
 	}
 
 }
