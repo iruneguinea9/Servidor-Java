@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +16,11 @@
 	</tr>
 	<c:forEach items="${medicos}" var="medico">
 	<tr>
+	
 		<td>${medico.nombre}</td>
 		<td>${medico.especialidad}</td>
 		<c:if test="${(medico.user==null)&&(medico.password==null)}">
-			<td><a href="/registrar?${medico.id}">REGISTRAR</a></td>
+			<td><a href="/registrar/${medico.id}">REGISTRAR</a></td>
 		</c:if>
 		<c:if test="${!((medico.user==null)&&(medico.password==null))}">
 			<td>Registrado</td>
