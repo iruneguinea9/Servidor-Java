@@ -23,13 +23,26 @@
 		</tr>
 		<c:forEach items="${consultas}" var="consulta">
 		<tr>
-			<form method="post" action="/guardarConsulta">
-				<td>${consulta.dni}</td>
+			
+				<td>${consulta.idpaciente}</td>
 				<td>${consulta.fecha}</td>
 				<td>${consulta.motivo}</td>	
-				<td></td>		
-				<td><input type="submit" name="guardarDiagnostico" value="GUARDAR"/></td>
-			</form>					 
+				
+				<c:choose>
+						<c:when test="${consulta.esFechaPasada()}">
+							<td></td><td><a href="/anular/${consulta.id}">ANULAR</a> </td>
+						</c:when>
+						<c:otherwise>
+							<form method="post" action="/guardarDiagnostico">
+								<input type="hidden" name="idConsulta" value="${consulta.id}"/>
+								<td><input type="text" name="diagnosticoInput" placeholder="${consulta.diagnostico}" /></td>
+								<td><input type="submit" name="guardarDiagnostico" value="GUARDAR"/></td>
+							</form>		
+						</c:otherwise>
+					</c:choose>
+					
+				
+						 
 		</tr>
 		</c:forEach>
 	</table>

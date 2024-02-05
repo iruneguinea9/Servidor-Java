@@ -28,7 +28,7 @@ public class ServicioEventos {
 	
 	public ArrayList<Evento> eventosFuturos(){
 	    LocalDateTime now = LocalDateTime.now();
-	    return (ArrayList<Evento>) repoEvento.findAll().stream()
+	    return (ArrayList<Evento>) repoEvento.findAll().stream() //pillar todos y filtrar
 	            .filter(evento -> evento.getFecha().isAfter(now))
 	            .collect(Collectors.toList());
 	}
@@ -82,6 +82,7 @@ public class ServicioEventos {
 	}
 
 	public Venta guardarNuevaVenta(Venta venta) {
+		//para ver si existe
 	    Evento evento = repoEvento.findById(venta.getEvento().getId()).orElseThrow(() -> new IllegalArgumentException("El evento no existe"));
 	    if (evento.getAforo() >= venta.getNum_entradas()) {
 	        venta.setPrecio(evento.getPrecio() * venta.getNum_entradas());

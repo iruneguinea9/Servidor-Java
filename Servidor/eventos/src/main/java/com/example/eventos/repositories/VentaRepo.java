@@ -13,4 +13,4 @@ public interface VentaRepo extends JpaRepository<Venta,Integer> {
     ArrayList<Venta> findByComprador(String comprador);
     ArrayList<Venta> findByEventoId(Integer id);
     void deleteByEventoId(Integer id);
-}
+} 

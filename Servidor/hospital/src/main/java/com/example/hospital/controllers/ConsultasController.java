@@ -65,8 +65,9 @@ public class ConsultasController {
 	    } else {
 	        //login correcto
 	        session.setAttribute("medico", m);
+	        
 	    }
-	    return "consultas";       
+	    return "redirect:/consultas";
 	}
 	
 	@GetMapping("/consultas")
@@ -76,7 +77,20 @@ public class ConsultasController {
 			return "login";
 		}
 		
+		
 		modelo.addAttribute("consultas",servicio.consultas(m));
 		return "consultas";
 	}
+	@PostMapping("/guardarDiagnostico")
+	public String guardarDiagnostico(ModelMap modelo, HttpSession session, @RequestParam String diagnosticoInput, @RequestParam int idConsulta ) {
+		servicio.guardarDiagnostico(idConsulta,diagnosticoInput);
+		
+		return "redirect:/consultas";
+	}
+	@GetMapping("/anular/{id}")
+	public String anular(ModelMap modelo,@PathVariable Integer id) {		
+		servicio.anularCita(id);
+		return "redirect:/consultas";
+}
+	
 }

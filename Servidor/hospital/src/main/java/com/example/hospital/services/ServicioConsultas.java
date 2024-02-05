@@ -1,9 +1,9 @@
 package com.example.hospital.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.example.hospital.entities.Consulta;
@@ -46,5 +46,24 @@ public class ServicioConsultas {
 	public List<Consulta> consultas(Medico m) {
 	    return repoConsulta.findByMedico(m);
 	}
+
+	public void guardarDiagnostico(int idConsulta, String diagnosticoInput) {
+	    Optional<Consulta> consultaOpt = repoConsulta.findById(idConsulta);
+	    if (consultaOpt.isPresent()) {
+	        Consulta consulta = consultaOpt.get();
+	        consulta.setDiagnostico(diagnosticoInput);
+	        repoConsulta.save(consulta);
+	    } else {
+	        throw new RuntimeException("No se encontró la consulta con el ID: " + idConsulta);
+	    }
+	}
+
+	public void anularCita(Integer id) {		
+		Optional<Consulta> consultaOpt = repoConsulta.findById(id);
+	    if (consultaOpt.isPresent()) {
+	        repoConsulta.delete(consultaOpt.get());
+	    }
+	}
+
 
 }

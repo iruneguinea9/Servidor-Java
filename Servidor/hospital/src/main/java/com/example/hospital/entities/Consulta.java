@@ -31,4 +31,10 @@ public class Consulta {
 	private LocalDate fecha;
 	private String motivo;
 	private String diagnostico;
+	
+	public boolean esFechaPasada() {
+		if (this.fecha.isAfter(LocalDate.now()))
+			return true;
+		return false;
+	}
 }
